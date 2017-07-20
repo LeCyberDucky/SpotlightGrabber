@@ -3,7 +3,7 @@ Tool for grabbing the Microsoft Windows Spotlight images and automatically copyi
 
 Uses SFML 2.4.2 
 
-A file named "SpotlightSettings.txt" needs to be placed next to the exe. The file should contain the following: 
+A file named "SpotlightSettings.txt" needs to be placed next to the exe. The file should contain the following (each one on a new line): 
 
 C:\Users\USERNAME\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets
 C:\Users\USERNAME\someDirectory\SpotlightWalls
