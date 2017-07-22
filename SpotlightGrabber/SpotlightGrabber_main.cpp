@@ -63,14 +63,17 @@ int_fast32_t main()
 	//If difference between last run and now one day or more:
 	int_fast64_t lastRunInt{ std::stoi(lastRun, 0) };
 	if (currentTime - lastRunInt >= 84600)
+	{
 		grabSpotlights(loadLocation, saveLocation, mobileSaveLoc, extension);
+		lastRunInt = currentTime;
+	}
 
 	//Rewrite file and lastRun
 	settingsFile.close();
 	std::ofstream settingsEdit;
 	settingsEdit.open("SpotlightSettings.txt");
 	settingsEdit << loadLocation << "\n" << saveLocation << "\n" << mobileSaveLoc << "\n" <<
-					extension << "\n" << currentTime;
+					extension << "\n" << lastRunInt;
 	
 	return 0;
 }
