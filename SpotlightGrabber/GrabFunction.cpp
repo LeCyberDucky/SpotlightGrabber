@@ -31,18 +31,19 @@ void grabSpotlights(std::string loadLocation, std::string saveLocation, std::str
 		if (std::find(existingFiles.cbegin(), existingFiles.cend(), p.path().stem().string()) == existingFiles.end())
 		{
 			sf::Image tempImg;
-			tempImg.loadFromFile(p.path().string());
+			if (tempImg.loadFromFile(p.path().string()))
+			{
+				if (tempImg.getSize().x % 16 == 0 && tempImg.getSize().y % 9 == 0)
+				{
+					fs::path copy{ saveLocation + "\\" + p.path().stem().string() + ".jpg" };
+					fs::copy(p.path(), copy);
+				}
 
-			if (tempImg.getSize().x % 16 == 0 && tempImg.getSize().y % 9 == 0)
-			{
-				fs::path copy{ saveLocation + "\\" + p.path().stem().string() + ".jpg" };
-				fs::copy(p.path(), copy);
-			}
-			
-			else if (tempImg.getSize().x % 9 == 0 && tempImg.getSize().y % 16 == 0)
-			{
-				fs::path copy{ mobileSaveLocation + "\\" + p.path().stem().string() + ".jpg" };
-				fs::copy(p.path(), copy);
+				else if (tempImg.getSize().x % 9 == 0 && tempImg.getSize().y % 16 == 0)
+				{
+					fs::path copy{ mobileSaveLocation + "\\" + p.path().stem().string() + ".jpg" };
+					fs::copy(p.path(), copy);
+				}
 			}
 		}
 	}
